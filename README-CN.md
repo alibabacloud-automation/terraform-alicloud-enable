@@ -1,25 +1,36 @@
 terraform-alicloud-enable
 ======================
 
-English | [简体中文](https://github.com/terraform-alicloud-modules/terraform-alicloud-enable/blob/master/README-CN.md)
+Terraform模块用于实现阿里云上云产品开通服务。
 
-Terraform Module used to enable several services automatically Alibaba Cloud.
 
-## Usage
-Open the Event Bridge Service, Private Zone and Container Registry Service. **Note:** For the Container Registry Service, The initial password, if not configured, will be set to `1111aaaa`,
+## 用法
+
 ```hcl
 module "example" {
   source                 = "terraform-alicloud-modules/enable/alicloud"
-  services = tomap({
-    alicloud_event_bridge_service = "On"
-    alicloud_pvtz_service         = "On"
-    alicloud_cr_service           = "On"
-  })
+  cdn_charge_type        = "PayByTraffic"
+  ack_charge_type        = "propayasgo"
+  services               = tomap({})
   cr_pwd                 = "your_cr_pwd"
 }
 ```
 
-## Relative Services
+### 开通指定云产品服务
+开通 Event Bridge Service, Private Zone 及 Container Registry 云产品服务. **注意:** 对于Container Registry, 如果您未配置密码, 初始密码将被设为`1111aaaa`.
+```hcl
+module "example" {
+  source = "terraform-alicloud-modules/enable/alicloud"
+  services = tomap({
+    alicloud_event_bridge_service = "On"
+    alicloud_pvtz_service         = "On"
+    alicloud_cr_service           = "On"
+    cr_pwd                        = "1111aaaa"
+  })
+}
+```
+
+## 相关服务
 | Service Name          |
 |----------------------------------------|
 | alicloud_event_bridge_service          |
@@ -49,26 +60,27 @@ module "example" {
 | alicloud_cms_service                   |
 | alicloud_edas_service                  |
 
-## Examples
+## 示例
 
-* [complete example](https://github.com/terraform-alicloud-modules/terraform-alicloud-enable/tree/master/examples/complete)
+* [ENABLE 完整示例](https://github.com/terraform-alicloud-modules/terraform-alicloud-enable/tree/master/examples/complete)
 
-## Terraform versions
+
+## Terraform 版本
 
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 0.12.0 |
 | <a name="requirement_alicloud"></a> [alicloud](#requirement\_alicloud) | >= 1.67.0 |
 
-Authors
+作者
 -------
 Created and maintained by Alibaba Cloud Terraform Team(terraform@alibabacloud.com)
 
-License
+许可
 ----
 Apache 2 Licensed. See LICENSE for full details.
 
-Reference
+参考
 ---------
 * [Terraform-Provider-Alicloud Github](https://github.com/terraform-providers/terraform-provider-alicloud)
 * [Terraform-Provider-Alicloud Release](https://releases.hashicorp.com/terraform-provider-alicloud/)
