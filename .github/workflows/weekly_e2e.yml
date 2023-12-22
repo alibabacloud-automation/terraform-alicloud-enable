@@ -14,8 +14,8 @@ jobs:
       - name: weekly e2e test
         run: |
           objectPath="github-action/${{github.repository}}/weekly-e2e/Action-${{github.run_number}}/Attempt-${{github.run_attempt}}"
-          curl -s https://exampleodule-ci-terrafoodule-ci-adpgxuiilx.ap-southeast-1.fcapp.run/?branch=main\&repo_name=${{github.repository}}\&oss_object_path=${objectPath}
-          go run scripts/e2e_check.go ${objectPath}
+          curl -s https://exampleodule-ci-terrafoodule-ci-adpgxuiilx.ap-southeast-1.fcapp.run/?branch=main\&repo_name=${{github.repository}}\&oss_object_path=${objectPath}\&job_id=${{github.run_id}}-${{github.run_attempt}}å
+          go run scripts/e2e_check.go ${objectPath} ${{github.run_id}}-${{github.run_attempt}}
       - name: update test record
         run: |
           git add TestRecord.md
