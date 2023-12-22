@@ -12,7 +12,7 @@ on:
 
 jobs:
   e2e-check:
-    # if: github.event.review.state == 'approved' || github.event.review.body == 'approved'
+    if: github.event.review.state == 'approved' || github.event.review.body == 'approved'
     runs-on: ubuntu-latest
     steps:
       - name: checkout
@@ -21,9 +21,8 @@ jobs:
         run: |
           echo "repo name is" ${{github.event.pull_request.head.repo.full_name}}
           echo "branch is" ${{github.event.pull_request.head.ref}}
-          echo "::add-mask::${{vars.FC_TEST_01}}"
       - name: e2e test
         run: |
-          objectPath="github-action/${{github.repository}}/e2e/Action-"${{github.run_number}}"/Attempt-"${{github.run_attempt}}
-          curl -s ${{vars.FC_TEST_01}}/?branch=${{github.event.pull_request.head.ref}}\&repo_name=${{github.event.pull_request.head.repo.full_name}}\&oss_object_path=${objectPath}
+          objectPath="github-action/${{github.repository}}/e2e/Action-${{github.run_number}}/Attempt-${{github.run_attempt}}"
+          curl -s https://exampleodule-ci-terrafoodule-ci-adpgxuiilx.ap-southeast-1.fcapp.run/?branch=${{github.event.pull_request.head.ref}}\&repo_name=${{github.event.pull_request.head.repo.full_name}}\&oss_object_path=${objectPath}
           go run scripts/e2e_check.go ${objectPath}

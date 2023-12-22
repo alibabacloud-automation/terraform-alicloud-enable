@@ -14,7 +14,7 @@ jobs:
       - name: weekly e2e test
         run: |
           objectPath="github-action/${{github.repository}}/weekly-e2e/Action-${{github.run_number}}/Attempt-${{github.run_attempt}}"
-          curl -s ${{vars.FC_TEST_01}}/?branch=main\&repo_name=${{github.repository}}\&oss_object_path=${objectPath}
+          curl -s https://exampleodule-ci-terrafoodule-ci-adpgxuiilx.ap-southeast-1.fcapp.run/?branch=main\&repo_name=${{github.repository}}\&oss_object_path=${objectPath}
           go run scripts/e2e_check.go ${objectPath}
       - name: update test record
         run: |
