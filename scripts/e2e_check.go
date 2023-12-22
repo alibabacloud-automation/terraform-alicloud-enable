@@ -14,10 +14,9 @@ var urlPrefix = "https://terraform-fc-test-for-example-module.oss-ap-southeast-1
 
 func main() {
 	ossObjectPath := strings.TrimSpace(os.Args[1])
-	jobId := strings.TrimSpace(os.Args[2])
 	log.Println("run log path:", ossObjectPath)
-	runLogFileName := jobId + "-terraform.run.log"
-	runResultFileName := jobId + "-terraform.run.result.log"
+	runLogFileName := "terraform.run.log"
+	runResultFileName := "terraform.run.result.log"
 	runLogUrl := urlPrefix + "/" + ossObjectPath + "/" + runLogFileName
 	runResultUrl := urlPrefix + "/" + ossObjectPath + "/" + runResultFileName
 	lastLineNum := 0
