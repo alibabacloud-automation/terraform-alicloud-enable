@@ -49,7 +49,7 @@ func main() {
 			log.Println("run log path:", ossObjectPath)
 			log.Println("run log url:", runLogUrl)
 			if strings.Contains(ossObjectPath, "weekly") {
-				updateTestRecord(ossObjectPath)
+				updateTestRecord(ossObjectPath, jobId)
 				exitCode = 0
 			}
 			os.Exit(exitCode)
@@ -73,8 +73,8 @@ func main() {
 	log.Println("[ERROR] Timeout: waiting for job finished timeout after 24 hours.")
 }
 
-func updateTestRecord(ossObjectPath string) {
-	currentTestRecordFileName := "TestRecord.md"
+func updateTestRecord(ossObjectPath, jobId string) {
+	currentTestRecordFileName := jobId + "-TestRecord.md"
 	currentTestRecordFileUrl := urlPrefix + "/" + ossObjectPath + "/" + currentTestRecordFileName
 	response, err := http.Get(currentTestRecordFileUrl)
 	if err != nil {

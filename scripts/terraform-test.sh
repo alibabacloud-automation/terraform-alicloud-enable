@@ -4,7 +4,7 @@ allSuccess=true
 planFile=${1}"/scripts/plan.tftest.hcl"
 applyFile=${1}"/scripts/apply.tftest.hcl"
 
-testRecordFile="TestRecord.md"
+testRecordFile=${1}"-TestRecord.md"
 echo "" > $testRecordFile
 time=$(date -u "+%d %b %Y %H:%M UTC")
 echo -e "## $time\n" >> $testRecordFile
