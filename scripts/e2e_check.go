@@ -83,7 +83,7 @@ func updateTestRecord(ossObjectPath, jobId string) {
 	}
 	defer response.Body.Close()
 	data, _ := io.ReadAll(response.Body)
-	currentTestRecord := string(data)
+	currentTestRecord := string(data) + "\n"
 
 	testRecordFileName := "TestRecord.md"
 	var testRecordFile *os.File

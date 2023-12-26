@@ -35,7 +35,6 @@ module "example" {
 | alicloud_iot_service                   | 
 | alicloud_kms_service                   |  
 | alicloud_log_service                   | 
-| alicloud_maxcompute_service            |  
 | alicloud_mns_service                   |  
 | alicloud_nas_service                   | 
 | alicloud_oss_service                   | 
