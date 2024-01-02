@@ -14,10 +14,9 @@ var urlPrefix = "https://terraform-fc-test-for-example-module.oss-ap-southeast-1
 
 func main() {
 	ossObjectPath := strings.TrimSpace(os.Args[1])
-	jobId := strings.TrimSpace(os.Args[2])
 	log.Println("run log path:", ossObjectPath)
-	runLogFileName := jobId + "-terraform.run.log"
-	runResultFileName := jobId + "-terraform.run.result.log"
+	runLogFileName := "terraform.run.log"
+	runResultFileName := "terraform.run.result.log"
 	runLogUrl := urlPrefix + "/" + ossObjectPath + "/" + runLogFileName
 	runResultUrl := urlPrefix + "/" + ossObjectPath + "/" + runResultFileName
 	lastLineNum := 0
@@ -49,7 +48,7 @@ func main() {
 			log.Println("run log path:", ossObjectPath)
 			log.Println("run log url:", runLogUrl)
 			if strings.Contains(ossObjectPath, "weekly") {
-				updateTestRecord(ossObjectPath, jobId)
+				updateTestRecord(ossObjectPath)
 				exitCode = 0
 			}
 			os.Exit(exitCode)
@@ -73,8 +72,8 @@ func main() {
 	log.Println("[ERROR] Timeout: waiting for job finished timeout after 24 hours.")
 }
 
-func updateTestRecord(ossObjectPath, jobId string) {
-	currentTestRecordFileName := jobId + "-TestRecord.md"
+func updateTestRecord(ossObjectPath string) {
+	currentTestRecordFileName := "TestRecord.md"
 	currentTestRecordFileUrl := urlPrefix + "/" + ossObjectPath + "/" + currentTestRecordFileName
 	response, err := http.Get(currentTestRecordFileUrl)
 	if err != nil {

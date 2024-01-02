@@ -14,9 +14,9 @@ jobs:
         uses: actions/checkout@v3
       - name: weekly e2e test
         run: |
-          objectPath="github-action/${{github.repository}}/weekly-e2e/Action-${{github.run_number}}/Attempt-${{github.run_attempt}}"
-          curl -H "X-Fc-Invocation-Type:Async" -s https://exampleodule-ci-terrafoodule-ci-adpgxuiilx.ap-southeast-1.fcapp.run/?branch=main\&repo_name=${{github.repository}}\&oss_object_path=${objectPath}\&job_id=${{github.run_id}}-${{github.run_attempt}}
-          go run scripts/e2e_check.go ${objectPath} ${{github.run_id}}-${{github.run_attempt}}
+          objectPath="github-action/${{github.repository}}/weekly-e2e/Action-${{github.run_number}}-${{github.run_id}}-${{github.run_attempt}}"
+          go run scripts/curl_fc_trigger.go main ${{github.repository}} ${objectPath}
+          go run scripts/e2e_check.go ${objectPath}
       - name: update test record
         run: |
           git add TestRecord.md
