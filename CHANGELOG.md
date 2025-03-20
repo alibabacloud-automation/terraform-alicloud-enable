@@ -1,4 +1,8 @@
-## 1.2.0 (Unreleased)
+## 1.3.0 (Unreleased)
+## 1.2.0 (March 20, 2025)
+
+- module: improve data source count [GH-19](https://github.com/alibabacloud-automation/terraform-alicloud-enable/pull/19)
+
 ## 1.1.0 (Feb 29, 2024)
 
 
